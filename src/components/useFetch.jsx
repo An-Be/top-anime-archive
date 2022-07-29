@@ -1,4 +1,4 @@
-//custom hook to fetch data
+// //custom hook to fetch data
 
 import { useEffect, useState } from "react"
 
@@ -6,7 +6,6 @@ const useFetch = (url) => {
     const[loading, setLoading] = useState(false);
     const[apiData, setApiData] = useState([]);
     const[serverError, setServerError] = useState(null);
-
 
     useEffect(() => {
         setLoading(true);
@@ -26,6 +25,6 @@ const useFetch = (url) => {
     }, [url])
 
     return{ loading, apiData, serverError }
-
+    
 };
 export default useFetch;

@@ -11,7 +11,7 @@ const Header = () => {
     return(
         <Nav pills className="nav">
             <NavItem>
-                <NavLink>Top Anime Archive</NavLink>
+                <NavLink tag={Link} to='/'>Top Anime Archive</NavLink>
             </NavItem>
             <Dropdown  nav isOpen={animeDropdownOpen} toggle={toggleAnime}>
                 <DropdownToggle nav caret>

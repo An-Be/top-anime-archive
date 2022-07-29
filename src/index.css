@@ -13,29 +13,37 @@ body {
   background-color: rgb(233, 238, 242);
   
 }
+
 .loading{
   display: block;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
+  width: 80%;
+  margin-left: 50%;
+  margin-right: 50%;
   margin-top: 20%;
 }
-.card{
-  width: 300px;
-  flex: 1;
+
+.card-container{
+  border: 1px solid black;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin: 1rem;
+
+}
+.card-container h1{
+  font-size: 1rem;
   text-align: center;
 }
-.card-container-wrapper{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.card-container img {
+  width: 200px;
+  height: 300px;
+  object-fit:scale-down;
 }
-.card-container{
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
-  align-items: center;
+  gap: 1rem;
 }
