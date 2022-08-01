@@ -24,9 +24,7 @@ const DataProvider = ({ children }) => {
             }
             fetchData();
         }, [url])
-    
         return{ loading, apiData, serverError }
-
     }
 
     return(
