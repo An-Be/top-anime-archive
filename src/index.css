@@ -47,6 +47,19 @@ body {
   justify-content: center;
   gap: 1rem;
 }
+.rec-wrapper{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.rec-container{
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
 
 @media (max-width: 1050px) and (min-width: 768px) {
   .container{

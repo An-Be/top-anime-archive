@@ -1,32 +1,34 @@
+import { useContext, useEffect } from "react";
+import { getData } from '../actions/Actions';
 import AddToList from '../components/AddToList';
 import ViewMoreInfo from '../components/ViewMoreInfo';
-import { AnimeContext } from '../context/AnimeContext';
-import { useContext, useEffect } from "react";
-import { getAllAnime } from '../actions/Actions';
+import { DataContext } from "../context/DataContext";
+
 
 const AllAnime = () => {
 
-    const { animeLoading, animeError, apiAnimeData, dispatch } = useContext(AnimeContext)
-   
+    const { loading, error, data, dispatch } = useContext(DataContext);
+
     useEffect(() => {
-        dispatch({ type: 'FETCHING'})
-        const fetchData = async () => {
-            try{
-                const anime = await getAllAnime()
-                dispatch({ type: 'FETCHED', payload: anime})    
-            }catch(error){
-                dispatch({ type: 'FETCH_ERROR'})
-            }
-        }
-        fetchData();
-        console.log('i am used once')
-    }, [dispatch])
+    dispatch({ type: "FETCHING" });
+    const fetchData = async () => {
+      try {
+        const allAnime = await getData(`https://api.jikan.moe/v4/top/anime`);;
+        dispatch({ type: "FETCHED", payload: allAnime });
+      } catch (error) {
+        dispatch({ type: "FETCH_ERROR" });
+      }
+    };
+    fetchData();
+    console.log("i am used once");
+    console.log(data)
+    }, [])
 
     return(
         <div className="container">
-                {animeLoading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
-                : !animeLoading && animeError ? <div>{animeError}</div> 
-                : apiAnimeData.map((anime) => {
+                {loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
+                : !loading && error? <div>{error}</div> 
+                : data.map((anime) => {
                     return (
                     <div key={anime.mal_id} className="card-container">
                         <img src={anime.images.jpg.image_url} alt={anime.title} />

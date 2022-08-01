@@ -22,7 +22,7 @@ const Header = () => {
                     <DropdownItem tag={Link} to='/search-top-anime' >Search Top Anime</DropdownItem>
                     <DropdownItem >Seasonal Anime</DropdownItem>
                     <DropdownItem >Reviews</DropdownItem>
-                    <DropdownItem >Reccomendations</DropdownItem>
+                    <DropdownItem tag={Link} to='/anime-reccomendations'>Reccomendations</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
             <Dropdown nav isOpen={mangaDropdownOpen} toggle={toggleManga}>
@@ -33,7 +33,7 @@ const Header = () => {
                     <DropdownItem tag={Link} to='/top-manga'>Top 25 Manga</DropdownItem>
                     <DropdownItem >Search Manga</DropdownItem>
                     <DropdownItem >Reviews</DropdownItem>
-                    <DropdownItem >Reccomendations</DropdownItem>
+                    <DropdownItem tag={Link} to='/manga-reccomendations'>Reccomendations</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
             <NavItem>

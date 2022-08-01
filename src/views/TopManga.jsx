@@ -1,32 +1,33 @@
+import { useContext, useEffect } from "react";
+import { getData } from '../actions/Actions';
 import AddToList from '../components/AddToList';
 import ViewMoreInfo from '../components/ViewMoreInfo';
-import { MangaContext } from "../context/MangaContext";
-import { useContext, useEffect } from "react";
-import { getAllManga } from '../actions/Actions';
+import { DataContext } from "../context/DataContext";
 
-const TopManga = () => {
+const AllAnime = () => {
 
-    const { mangaLoading, mangaError, apiMangaData, dispatch } = useContext(MangaContext)
-   
+    const { loading, error, data, dispatch } = useContext(DataContext);
+
     useEffect(() => {
-        dispatch({ type: 'FETCHING'})
-        const fetchData = async () => {
-            try{
-                const anime = await getAllManga()
-                dispatch({ type: 'FETCHED', payload: anime})    
-            }catch(error){
-                dispatch({ type: 'FETCH_ERROR'})
-            }
-        }
-        fetchData();
-        console.log('i am used once')
-    }, [dispatch])
+    dispatch({ type: "FETCHING" });
+    const fetchData = async () => {
+      try {
+        const allManga = await getData(`https://api.jikan.moe/v4/top/manga`);;
+        dispatch({ type: "FETCHED", payload: allManga });
+      } catch (error) {
+        dispatch({ type: "FETCH_ERROR" });
+      }
+    };
+    fetchData();
+    console.log("i am used once");
+    console.log(data)
+    }, [])
 
     return(
         <div className="container">
-                {mangaLoading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
-                : !mangaLoading && mangaError? <div>{mangaError}</div> 
-                : apiMangaData.map((manga) => {
+                {loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
+                : !loading && error? <div>{error}</div> 
+                : data.map((manga) => {
                     return (
                     <div key={manga.mal_id} className="card-container">
                         <img src={manga.images.jpg.image_url} alt={manga.title} />
@@ -38,4 +39,4 @@ const TopManga = () => {
         </div>
     );
 }
-export default TopManga;
+export default AllAnime;

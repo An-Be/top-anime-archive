@@ -1,26 +1,40 @@
-//component to render only 5 from each api call
+import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../context/DataContext";
+import { getData } from "../actions/Actions";
 
-// import { useContex, useEffect } from "react";
-// import { AnimeContext } from "../context/AnimeContext";
-// import { MangaContext } from "../context/MangaContext";
+const TopFive = ({ url }) => {
+    const { loading, error, data, dispatch} = useContext(DataContext);
+    const [topFive, setTopFive] = useState([]);
 
-// const TopFive = ({ type }) => {
-//     const { animeLoading, animeError, apiAnimeData, } = useContext(DataContext, MangaContext);
+    useEffect(() => {
+        dispatch({ type: "FETCHING" });
+        const fetchData = async () => {
+          try {
+            const data = await getData(url);
+            dispatch({ type: "FETCHED", payload: data });
+            setTopFive(data)
+          } catch (error) {
+            dispatch({ type: "FETCH_ERROR" });
+          }
+        };
+        fetchData();
+        console.log("i am used once");
+    }, [])
 
 
 
-//     return(
-//         <div className="container">
-//             {state.loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
-//             : !state.loading && state.error ? <div>{state.error}</div> 
-//             : state.apiData.slice(0,5).map((item) => {
-//                 return (
-//                 <div key={item.mal_id} className="card-container">
-//                     <img src={item.images.jpg.image_url} alt={item.title} />
-//                     <h1>{item.title}</h1>
-//                 </div>
-//             )})}
-//         </div>
-//     );
-// }
-// export default TopFive;
+    return(
+        <div className="container">
+            {loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
+            : !loading && error ? <div>{error}</div> 
+            : topFive.slice(0,5).map((item) => {
+                return (
+                <div key={item.mal_id} className="card-container">
+                    <img src={item.images.jpg.image_url} alt={item.title} />
+                    <h1>{item.title}</h1>
+                </div>
+            )})}
+        </div>
+    );
+}
+export default TopFive;
