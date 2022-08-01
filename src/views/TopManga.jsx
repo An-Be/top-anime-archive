@@ -7,13 +7,13 @@ const TopManga = () => {
 
     const { useFetch } = useContext(DataContext);
 
-    const { loading, apiData, serverError } = useFetch('https://api.jikan.moe/v4/top/manga');
+    const { state } = useFetch('https://api.jikan.moe/v4/top/manga');
 
     return(
         <div className="container">
-                {loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
-                : !loading && serverError ? <div>Error in fetching data</div> 
-                : apiData.map((manga) => {
+                {state.loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
+                : !state.loading && state.error ? <div>{state.error}</div> 
+                : state.apiData.map((manga) => {
                     return (
                     <div key={manga.mal_id} className="card-container">
                         <img src={manga.images.jpg.image_url} alt={manga.title} />

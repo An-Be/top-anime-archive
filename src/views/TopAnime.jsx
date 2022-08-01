@@ -7,13 +7,14 @@ const AllAnime = () => {
 
     const { useFetch } = useContext(DataContext);
 
-    const { loading, apiData, serverError } = useFetch('https://api.jikan.moe/v4/top/anime');
+    const { state } = useFetch(`https://api.jikan.moe/v4/top/anime`);
+    console.log(state.apiData);
 
     return(
         <div className="container">
-                {loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
-                : !loading && serverError ? <div>Error in fetching data</div> 
-                : apiData.map((anime) => {
+                {state.loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
+                : !state.loading && state.error ? <div>{state.error}</div> 
+                : state.apiData.map((anime) => {
                     return (
                     <div key={anime.mal_id} className="card-container">
                         <img src={anime.images.jpg.image_url} alt={anime.title} />
