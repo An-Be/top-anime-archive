@@ -1,24 +1,36 @@
-import { useContext } from "react";
-import { DataContext } from "../context/DataContext";
+import { MangaContext } from "../context/MangaContext";
+import { useContext, useEffect } from "react";
+import { getAllManga } from '../actions/Actions';
 
 const Top5Manga = () => {
 
-    const { useFetch } = useContext(DataContext);
-
-    const { state } = useFetch(`https://api.jikan.moe/v4/top/manga`);
-    console.log(state.apiData)
+    const { mangaLoading, mangaError, apiMangaData, dispatch } = useContext(MangaContext)
+   
+    useEffect(() => {
+        dispatch({ type: 'FETCHING'})
+        const fetchData = async () => {
+            try{
+                const anime = await getAllManga()
+                dispatch({ type: 'FETCHED', payload: anime})    
+            }catch(error){
+                dispatch({ type: 'FETCH_ERROR'})
+            }
+        }
+        fetchData();
+        console.log('i am used once')
+    }, [dispatch])
 
     return(
         <div className="container">
-            {state.loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
-            : !state.loading && state.error ? <div>{state.error}</div> 
-            : state.apiData.slice(1,5).map((item) => {
-                return (
-                <div key={item.mal_id} className="card-container">
-                    <img src={item.images.jpg.image_url} alt={item.title} />
-                    <h1>{item.title}</h1>
-                </div>
-            )})}
+                {mangaLoading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
+                : !mangaLoading && mangaError? <div>{mangaError}</div> 
+                : apiMangaData.slice(0,5).map((manga) => {
+                    return (
+                    <div key={manga.mal_id} className="card-container">
+                        <img src={manga.images.jpg.image_url} alt={manga.title} />
+                        <h1>{manga.title}</h1>
+                    </div>
+                )})}
         </div>
     );
 

@@ -2,16 +2,18 @@ import Header from './components/Header';
 // import TopAnime from './views/TopAnime';
 // import TopManga from './views/TopManga';
 import BrowserRouter from './components/BrowserRouter';
-import DataProvider from './context/DataContext';
-
+import AnimeProvider from './context/AnimeContext';
+import MangaProvider from './context/MangaContext';
 function App() {
 
   return (
     <div className="App">
-      <DataProvider>
+      <AnimeProvider>
+      <MangaProvider>
         <Header />
         <BrowserRouter />
-      </DataProvider>
+        </MangaProvider>
+      </AnimeProvider>
     </div>
   );
 }
