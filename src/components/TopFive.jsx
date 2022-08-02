@@ -24,12 +24,12 @@ const TopFive = ({ url }) => {
 
 
     return(
-        <div className="container">
+        <div className="homeContainer">
             {loading? <img className="loading" src={require('../loading.webp')} alt='loader' /> 
             : !loading && error ? <div>{error}</div> 
             : topFive.slice(0,5).map((item) => {
                 return (
-                <div key={item.mal_id} className="card-container">
+                <div key={item.mal_id} className="home-card-container">
                     <img src={item.images.jpg.image_url} alt={item.title} />
                     <h1>{item.title}</h1>
                 </div>
