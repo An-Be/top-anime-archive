@@ -10,7 +10,13 @@ const DataProvider = ({ children }) => {
             loading: false,
             error: null,
             status: 'idle',
-            data: [],
+            apiData: [],
+            animeData: [],
+            mangaData: [],
+            animeRecData: [],
+            mangaRecData: [],
+            randomAnimeData: [],
+            randomMangaData: [],
         })
 
     return(
