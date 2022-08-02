@@ -18,6 +18,7 @@ const AnimeRec = () => {
       }
     };
     fetchData();
+    console.log(data)
     console.log("i am used once");
   }, []);
 
@@ -33,7 +34,7 @@ const AnimeRec = () => {
       ) : !loading && error ? (
         <div>{error}</div>
       ) : (
-        data.map((rec, index) => {
+        data.slice(1,20).map((rec, index) => {
           return (
             <div key={index}>
               <div className="rec-container">
