@@ -1,30 +1,34 @@
-import TopFive from "../components/TopFive";
-import RecsAndRevs from "../components/RecsAndRevs";
+import TopFiveAnime from "../components/TopFiveAnime";
+import TopFiveManga from "../components/TopFiveManga";
+import RndAnimeBtn from "../components/RndAnimeBtn";
+import RndMangaBtn from "../components/RndMangaBtn";
+import TwoAnimeRec from "../components/TwoAnimeRec";
+import TwoMangaRec from "../components/TwoMangaRec";
 
 const Home = () => {
   return (
     <main>
       <section className="intro">
         <div className="introContainer">
-          <h1>Welcome to Anime City</h1>
+          <h1>Welcome to Anime Archive</h1>
           <p>Where you can browse through popular anime and manga</p>
           <div className="rndbtn">
-            <button className="randomAnime">Random Anime</button>
-            <button className="randomManga">Random Manga</button>
+            <RndAnimeBtn />
+            <RndMangaBtn />
           </div>
         </div>
       </section>
       <section className='animeSection'>
-        <TopFive url={`https://api.jikan.moe/v4/top/anime`} />
+        <TopFiveAnime />
       </section>
       <section className='mangaSection'>
-        <TopFive url={`https://api.jikan.moe/v4/top/manga`} />
+        <TopFiveManga />
       </section>
       <section className='animeSection'>
-        <RecsAndRevs url={`https://api.jikan.moe/v4/recommendations/anime`} />
+        <TwoAnimeRec />
       </section>
       <section className='animeSection'>
-        <RecsAndRevs url={`https://api.jikan.moe/v4/recommendations/manga`} />
+        <TwoMangaRec />
       </section>
     </main>
   );
