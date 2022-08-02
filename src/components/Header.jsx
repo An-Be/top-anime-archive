@@ -14,7 +14,7 @@ const Header = () => {
                 <NavbarBrand className="navBrand" tag={Link} to='/'><img style={{width: '50px'}} src={require('../logo.png')} /></NavbarBrand>
             </NavItem>
             <Dropdown  nav isOpen={animeDropdownOpen} toggle={toggleAnime}>
-                <DropdownToggle style={{color: 'white'}} nav caret>
+                <DropdownToggle style={{color: '#457b9d'}} nav caret>
                     Anime
                 </DropdownToggle>
                 <DropdownMenu >
@@ -26,7 +26,7 @@ const Header = () => {
                 </DropdownMenu>
             </Dropdown>
             <Dropdown nav isOpen={mangaDropdownOpen} toggle={toggleManga}>
-                <DropdownToggle style={{color: 'white'}} nav caret>
+                <DropdownToggle style={{color: '#457b9d'}} nav caret>
                     Manga
                 </DropdownToggle>
                 <DropdownMenu>
@@ -37,7 +37,7 @@ const Header = () => {
                 </DropdownMenu>
             </Dropdown>
             <NavItem>
-                <NavLink style={{color: 'white'}}>My List</NavLink>
+                <NavLink style={{color: '#457b9d'}}>My List</NavLink>
             </NavItem>
             <Button>Sign Up</Button>
 
