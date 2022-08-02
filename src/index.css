@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;900&display=swap');
 *{
-  color: white;
-  background-color: #262b32;
+  /* color: white; */
+  /* background-color: #262b32; */
 }
 body {
   width: 100%;
@@ -16,7 +16,7 @@ body {
   justify-content: space-around;
   align-items: center;
   position: fixed;
-  background-color: #262b32;
+  background-color: white;
   top: 0;
   width: 100%;
 }
@@ -51,12 +51,8 @@ main{
   justify-content:center;
   align-items: center; 
   flex-direction: column;
-  background-color: transparent;
 }
-.introContainer div, h1, p{
-  background-color: transparent;
 
-}
 .intro h1{
   font-weight: 900;
   margin: 1rem;
@@ -89,7 +85,6 @@ main{
   margin: 1rem;
   color: white;
 
-
 }
 .homeContainer{
   align-items: center;
@@ -118,10 +113,10 @@ main{
   font-weight: 300;
   gap: 1rem;
   text-align: center;
-
+  padding: 1rem;
 }
 section{
-  background-color: #262b32;
+  /* background-color: #262b32; */
   width: 100%;
   padding: 2rem;
 
@@ -155,7 +150,6 @@ section{
   max-height: 100%;
 }
 .container {
-  background-color: #262b32;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
