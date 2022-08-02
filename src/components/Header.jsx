@@ -1,4 +1,4 @@
-import { Nav, NavItem, NavLink,Dropdown, DropdownItem, DropdownToggle, DropdownMenu } from "reactstrap";
+import { Nav, NavItem, NavLink,Dropdown, NavbarBrand, DropdownItem, DropdownToggle, DropdownMenu, Button } from "reactstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -9,12 +9,12 @@ const Header = () => {
     const toggleAnime = () => setAnimeDropdownOpen(!animeDropdownOpen);
     const toggleManga = () => setMangaDropdownOpen(!mangaDropdownOpen)
     return(
-        <Nav pills className="nav">
+        <Nav style={{padding: '1rem', borderBottom: '1px solid grey'}}  className="nav">
             <NavItem>
-                <NavLink tag={Link} to='/'>Top Anime Archive</NavLink>
+                <NavbarBrand className="navBrand" tag={Link} to='/'><img style={{width: '50px'}} src={require('../logo.png')} /></NavbarBrand>
             </NavItem>
             <Dropdown  nav isOpen={animeDropdownOpen} toggle={toggleAnime}>
-                <DropdownToggle nav caret>
+                <DropdownToggle style={{color: 'white'}} nav caret>
                     Anime
                 </DropdownToggle>
                 <DropdownMenu >
@@ -26,7 +26,7 @@ const Header = () => {
                 </DropdownMenu>
             </Dropdown>
             <Dropdown nav isOpen={mangaDropdownOpen} toggle={toggleManga}>
-                <DropdownToggle nav caret>
+                <DropdownToggle style={{color: 'white'}} nav caret>
                     Manga
                 </DropdownToggle>
                 <DropdownMenu>
@@ -37,8 +37,10 @@ const Header = () => {
                 </DropdownMenu>
             </Dropdown>
             <NavItem>
-                <NavLink>My List</NavLink>
+                <NavLink style={{color: 'white'}}>My List</NavLink>
             </NavItem>
+            <Button>Sign Up</Button>
+
         </Nav>
     );
 }
