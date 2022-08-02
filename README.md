@@ -1,3 +1,38 @@
+# Top Anime Archive
+
+This project is my final poject during the multiverse bootcamp
+I am focusing on using react hooks like
+- useContext
+- useReducer
+
+I am planning to make a scaled down version of My Anime List and using [Jikan API](https://jikan.moe/) to get all the data.
+
+### Some of the components I plan on having
+- [x] Top 25 Anime
+- [x] Top 25 Manga
+- [x] Anime Reccomendations
+- [x] Manga Reccomendations
+- [ ] Anime Reviews
+- [ ] Manga Reviews
+- [ ] Home page with 5 Top anime, 5 Top Manga, 2 reccomondations and 2 reviews for both anime and manga
+- [ ] I would also like to incorporate functionality so a user can add or remove anime or manga on their own personal list.
+- If it is a manga a user can set it to
+  - [ ] completed
+  - [ ] reading
+  - [ ] dropped
+  - [ ] to be read
+- If it is an anime a user can set it to
+  - [ ] watched
+  - [ ] watching
+  - [ ] dropped
+  - [ ] to be watched
+
+For styling I will be using a bit of reactstrap for the header/navbar and flexbox/grid for the rest
+
+### Long term goals
+- [ ] Fetching all information from API and using pagination/infinite scroll to show all information
+- [ ] Login/Sign up
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
