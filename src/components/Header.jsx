@@ -11,7 +11,7 @@ const Header = () => {
     return(
         <Nav pills className="nav">
             <NavItem>
-                <NavLink tag={Link} to='/'>Top Anime Archive</NavLink>
+                <NavLink>Top Anime Archive</NavLink>
             </NavItem>
             <Dropdown  nav isOpen={animeDropdownOpen} toggle={toggleAnime}>
                 <DropdownToggle nav caret>
@@ -22,7 +22,7 @@ const Header = () => {
                     <DropdownItem tag={Link} to='/search-top-anime' >Search Top Anime</DropdownItem>
                     <DropdownItem >Seasonal Anime</DropdownItem>
                     <DropdownItem >Reviews</DropdownItem>
-                    <DropdownItem tag={Link} to='/anime-reccomendations'>Reccomendations</DropdownItem>
+                    <DropdownItem >Reccomendations</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
             <Dropdown nav isOpen={mangaDropdownOpen} toggle={toggleManga}>
@@ -33,7 +33,7 @@ const Header = () => {
                     <DropdownItem tag={Link} to='/top-manga'>Top 25 Manga</DropdownItem>
                     <DropdownItem >Search Manga</DropdownItem>
                     <DropdownItem >Reviews</DropdownItem>
-                    <DropdownItem tag={Link} to='/manga-reccomendations'>Reccomendations</DropdownItem>
+                    <DropdownItem >Reccomendations</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
             <NavItem>
