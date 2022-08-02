@@ -5,21 +5,20 @@ import ViewMoreInfo from "../components/ViewMoreInfo";
 import { DataContext } from "../context/DataContext";
 
 const AllAnime = () => {
-  const { loading, error, data, dispatch } = useContext(DataContext);
+  const { loading, error, animeData, dispatch } = useContext(DataContext);
 
   useEffect(() => {
     dispatch({ type: "FETCHING" });
     const fetchData = async () => {
       try {
         const allAnime = await getData(`https://api.jikan.moe/v4/top/anime`);
-        dispatch({ type: "FETCHED", payload: allAnime });
+        dispatch({ type: "FETCHED_ANIME", payload: allAnime });
       } catch (error) {
         dispatch({ type: "FETCH_ERROR" });
       }
     };
     fetchData();
     console.log("i am used once");
-    console.log(data);
   }, []);
 
   return (
@@ -33,7 +32,7 @@ const AllAnime = () => {
       ) : !loading && error ? (
         <div>{error}</div>
       ) : (
-        data.map((anime) => {
+        animeData.map((anime) => {
           return (
             <div key={anime.mal_id} className="card-container">
               <img src={anime.images.jpg.image_url} alt={anime.title} />

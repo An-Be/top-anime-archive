@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { getData } from "../actions/Actions";
 
 const MangaRec = () => {
-  const { loading, error, data, dispatch } = useContext(DataContext);
+  const { loading, error, mangaRecData, dispatch } = useContext(DataContext);
 
   useEffect(() => {
     dispatch({ type: "FETCHING" });
@@ -12,14 +12,15 @@ const MangaRec = () => {
         const mangaRec = await getData(
           `https://api.jikan.moe/v4/recommendations/manga`
         );
-        dispatch({ type: "FETCHED", payload: mangaRec });
+        dispatch({ type: "FETCHED_MANGA_REC", payload: mangaRec });
       } catch (error) {
         dispatch({ type: "FETCH_ERROR" });
       }
     };
     fetchData();
     console.log("i am used once");
-  }, []);
+    console.log(mangaRecData)
+  }, [dispatch]);
 
   return (
     <div className="rec-wrapper">
@@ -33,7 +34,7 @@ const MangaRec = () => {
       ) : !loading && error ? (
         <div>{error}</div>
       ) : (
-        data.slice(1,20).map((rec, index) => {
+        mangaRecData.map((rec, index) => {
           return (
             <div key={index}>
               <div className="rec-container">
