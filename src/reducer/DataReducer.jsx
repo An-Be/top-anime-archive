@@ -33,6 +33,22 @@ const DataReducer = (state, action) => {
                 error: '', 
                 loading: false
             }
+        case 'FETCHED_ANIME_REV':
+        return{
+            ...state,
+            status: 'fetched', 
+            animeRevData: action.payload,
+            error: '', 
+            loading: false
+        }
+        case 'FETCHED_SEASON_ANIME':
+            return{
+                ...state,
+                status: 'fetched', 
+                animeSeasonData: action.payload,
+                error: '', 
+                loading: false
+            }
         case 'FETCHED_RANDOM_ANIME':
             return{
                 ...state,
@@ -62,6 +78,14 @@ const DataReducer = (state, action) => {
                 ...state,
                 status: 'fetched', 
                 mangaRecData: action.payload,
+                error: '', 
+                loading: false
+            }
+        case 'FETCHED_MANGA_REV':
+            return{
+                ...state,
+                status: 'fetched', 
+                mangaRevData: action.payload,
                 error: '', 
                 loading: false
             }
