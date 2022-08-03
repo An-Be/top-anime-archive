@@ -5,16 +5,16 @@ I am focusing on using react hooks like
 - useContext
 - useReducer
 
-I am planning to make a scaled down version of My Anime List and using [Jikan API](https://jikan.moe/) to get all the data.
+I am planning to make a scaled down version of My Anime List and using [Jikan API](https://jikan.moe/) and [Kitsu API](https://kitsu.docs.apiary.io/) to get all the data.
 
 ### Some of the components I plan on having
 - [x] Top 25 Anime
 - [x] Top 25 Manga
 - [x] Anime Reccomendations
 - [x] Manga Reccomendations
-- [ ] Anime Reviews
-- [ ] Manga Reviews
-- [ ] Home page with 5 Top anime, 5 Top Manga, 2 reccomondations and 2 reviews for both anime and manga
+- [x] Anime Reviews
+- [x] Home page with 5 Top anime, 5 Top Manga, 1 reccomondations for both anime and manga
+- [x] Add login function with firebase
 - [ ] I would also like to incorporate functionality so a user can add or remove anime or manga on their own personal list.
 - If it is a manga a user can set it to
   - [ ] completed
