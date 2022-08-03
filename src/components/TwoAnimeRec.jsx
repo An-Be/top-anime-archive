@@ -24,7 +24,7 @@ const TwoAnimeRec = () => {
   
     return (
       <div className="rec-wrapper">
-        <h1>Anime Reccomendations</h1>
+        <h1 className="h1Rec">Anime Reccomendations</h1>
         {loading ? (
           <img
             className="loading"
@@ -34,32 +34,40 @@ const TwoAnimeRec = () => {
         ) : !loading && error ? (
           <div>{error}</div>
         ) : (
-          animeRecData.slice(0,2).map((rec, index) => {
+          animeRecData.slice(0,1).map((rec, index) => {
             return (
               <div key={index}>
-                <div className="rec-container">
-                  <div>
-                    <h1>If you liked:</h1>
-                    <img
+              <div className="rec-container">
+              <table>
+                <tr>
+                  <th>If you Liked...</th>
+                  <th>You might like...</th>
+                </tr>
+                <tr>
+                  <td>
+                  <img
                       src={rec.entry[0].images.jpg.image_url}
                       alt={rec.entry[0].title}
+                      
                     />
-                    <p>{rec.entry[0].title}</p>
-                  </div>
-                  <div>
-                    <h1>...Then you might like:</h1>
-                    <img
+                  </td>
+                  <td>
+                  <img
                       src={rec.entry[1].images.jpg.image_url}
                       alt={rec.entry[1].title}
                     />
-                    <p>{rec.entry[1].title}</p>
-                  </div>
-                  <div>
-                    <p>{rec.content}</p>
-                    <p>Anime Rec by: {rec.user.username}</p>
-                  </div>
-                </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="title">{rec.entry[0].title}</td>
+                  <td className="title">{rec.entry[1].title}</td>
+                </tr>
+                <tr>
+                <td className="content">{rec.content}</td>
+                </tr>
+              </table>   
               </div>
+            </div>
             );
           })
         )}
