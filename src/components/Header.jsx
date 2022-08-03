@@ -1,10 +1,25 @@
 import { Nav, NavItem, NavLink,Dropdown, NavbarBrand, DropdownItem, DropdownToggle, DropdownMenu, Button } from "reactstrap";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase.config";
 
 const Header = () => {
+    const navigate = useNavigate();
+    const { isAuth, setIsAuth } = useContext(UserContext);
+
     const [animeDropdownOpen, setAnimeDropdownOpen]=useState(false);
-    const [mangaDropdownOpen, setMangaDropdownOpen]=useState(false)
+    const [mangaDropdownOpen, setMangaDropdownOpen]=useState(false);
+
+    const signOutUser = () => {
+        signOut(auth).then(() => {
+            localStorage.clear();
+            setIsAuth(false);
+            navigate("/login");
+        })
+    }
 
     const toggleAnime = () => setAnimeDropdownOpen(!animeDropdownOpen);
     const toggleManga = () => setMangaDropdownOpen(!mangaDropdownOpen)
@@ -18,11 +33,9 @@ const Header = () => {
                     Anime
                 </DropdownToggle>
                 <DropdownMenu >
-                    <DropdownItem tag={Link} to='/top-anime'>Top 25 Anime</DropdownItem>
-                    <DropdownItem tag={Link} to='/search-top-anime' >Search Top Anime</DropdownItem>
-                    <DropdownItem >Seasonal Anime</DropdownItem>
-                    <DropdownItem >Reviews</DropdownItem>
-                    <DropdownItem tag={Link} to='/anime-reccomendations'>Reccomendations</DropdownItem>
+                    <DropdownItem tag={Link} to='/top-anime'>Trending Anime</DropdownItem>
+                    <DropdownItem tag={Link} to='/season-anime'>Seasonal Anime</DropdownItem>
+                    <DropdownItem tag={Link} to='/anime-reviews'>Reviews</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
             <Dropdown nav isOpen={mangaDropdownOpen} toggle={toggleManga}>
@@ -30,16 +43,24 @@ const Header = () => {
                     Manga
                 </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem tag={Link} to='/top-manga'>Top 25 Manga</DropdownItem>
-                    <DropdownItem >Search Manga</DropdownItem>
-                    <DropdownItem >Reviews</DropdownItem>
-                    <DropdownItem tag={Link} to='/manga-reccomendations'>Reccomendations</DropdownItem>
+                    <DropdownItem tag={Link} to='/top-manga'>Trending Manga</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
-            <NavItem>
-                <NavLink style={{color: '#457b9d'}}>My List</NavLink>
-            </NavItem>
-            <Button>Sign Up</Button>
+                {isAuth && 
+                    <>
+                    <NavItem> 
+                    <NavLink style={{color: '#457b9d'}}>My List</NavLink> 
+                    </NavItem>
+                    <NavItem>
+                    <NavLink style={{color: '#457b9d'}}>My Profile</NavLink>
+                    </NavItem>
+                    </>
+                }
+            {!isAuth ? <Button tag={Link} to='/login'>Log In</Button>
+            :
+            <Button onClick={signOutUser}>Sign out</Button>
+            }
+            
 
         </Nav>
     );
