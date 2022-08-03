@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;900&display=swap');
-*{
-  /* color: white; */
-  /* background-color: #262b32; */
-}
 body {
   width: 100%;
   height: 100vh;
@@ -156,20 +152,32 @@ section{
   gap: 1rem;
   margin-top: 7rem;
 }
-.rec-wrapper{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+.h1Rec{
+  font-size: 1rem;
+  font-weight: 900;
 }
 .rec-container{
-  margin: 1rem;
+  border-top: 1px solid rgb(175, 175, 175);
+
+}
+.rec-wrapper{
+  margin: 6rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
 }
-
+td {
+  width: 50%;
+}
+td img{
+  width: 100px;
+}
+tr .title{
+  font-weight: 900;
+}
+tr .content{
+  font-size: .8rem;
+  font-style: italic;
+}
 @media (max-width: 1050px) and (min-width: 768px) {
   .container{
     grid-template-columns: 1fr 1fr 1fr;
