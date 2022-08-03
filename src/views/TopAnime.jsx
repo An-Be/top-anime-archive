@@ -11,7 +11,7 @@ const AllAnime = () => {
     dispatch({ type: "FETCHING" });
     const fetchData = async () => {
       try {
-        const allAnime = await getData(`https://api.jikan.moe/v4/top/anime`);
+        const allAnime = await getData(`https://kitsu.io/api/edge/trending/anime`);
         dispatch({ type: "FETCHED_ANIME", payload: allAnime });
       } catch (error) {
         dispatch({ type: "FETCH_ERROR" });
@@ -20,7 +20,6 @@ const AllAnime = () => {
     fetchData();
     console.log("i am used once");
   }, []);
-
   return (
     <div className="container">
       {loading ? (
@@ -34,9 +33,9 @@ const AllAnime = () => {
       ) : (
         animeData.map((anime) => {
           return (
-            <div key={anime.mal_id} className="card-container">
-              <img src={anime.images.jpg.image_url} alt={anime.title} />
-              <h1>{anime.title}</h1>
+            <div key={anime.id} className="card-container">
+              <img src={anime.attributes.posterImage.original} alt={anime.attributes.canonicalTitle} />
+              <h1>{anime.attributes.canonicalTitle}</h1>
               <AddToList />
               <ViewMoreInfo />
             </div>

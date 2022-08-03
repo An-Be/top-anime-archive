@@ -15,10 +15,10 @@ const RandomManga = () => {
               />
               : !loading && error ?
                 <div>{error}</div>
-            : <div key={randomMangaData.mal_id}>
-                <h1>{randomMangaData.title}</h1>
-                <img src={randomMangaData.images.jpg.image_url} alt={randomMangaData.title} />
-                <p>{randomMangaData.synopsis}</p>
+            : <div key={randomMangaData.id}>
+                <h1>{randomMangaData.attributes.canonicalTitle}</h1>
+                <img src={randomMangaData.attributes.posterImage.original} alt={randomMangaData.attributes.canonicalTitle} />
+                <p>{randomMangaData.attributes.synopsis}</p>
             </div>
             }
         </div>

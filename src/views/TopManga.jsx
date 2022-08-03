@@ -11,7 +11,7 @@ const AllManga = () => {
     dispatch({ type: "FETCHING" });
     const fetchData = async () => {
       try {
-        const allManga = await getData(`https://api.jikan.moe/v4/top/manga`);
+        const allManga = await getData(`https://kitsu.io/api/edge/trending/manga`);
         dispatch({ type: "FETCHED_MANGA", payload: allManga });
       } catch (error) {
         dispatch({ type: "FETCH_ERROR" });
@@ -24,7 +24,7 @@ const AllManga = () => {
 
   return (
     <div className="container">
-      {loading ? ( 
+      {loading ? (
         <img
           className="loading"
           src={require("../loading.webp")}
@@ -35,9 +35,9 @@ const AllManga = () => {
       ) : (
         mangaData.map((manga) => {
           return (
-            <div key={manga.mal_id} className="card-container">
-              <img src={manga.images.jpg.image_url} alt={manga.title} />
-              <h1>{manga.title}</h1>
+            <div key={manga.id} className="card-container">
+              <img src={manga.attributes.posterImage.original} alt={manga.attributes.canonicalTitle} />
+              <h1>{manga.attributes.canonicalTitle}</h1>
               <AddToList />
               <ViewMoreInfo />
             </div>

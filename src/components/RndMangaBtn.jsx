@@ -5,13 +5,16 @@ import { getData } from "../actions/Actions";
 
 const RndMangaBtn = () => {
     const { dispatch } = useContext(DataContext)
+    const rndNum = Math.floor(Math.random() * 10);
+
 
     useEffect(() => {
         dispatch({ type: 'FETCHING' })
         const fetchData = async () => {
             try{
-            const manga = await getData(`https://api.jikan.moe/v4/random/manga?sfw`);
-            dispatch({ type: 'FETCHED_RANDOM_MANGA', payload: manga })
+            const manga = await getData(`https://kitsu.io/api/edge/trending/manga`);
+            let rndManga = manga[rndNum]
+            dispatch({ type: 'FETCHED_RANDOM_MANGA', payload: rndManga })
             }
             catch(error){
                 dispatch({ type: "FETCH_ERROR" });
