@@ -4,35 +4,42 @@ import { auth, db } from "../firebase.config";
 
 const List = () => {
     const [ animeList, setAnimeList ] = useState([]);
-    const animeListCollectionRef = collection(db, 'Anime_list');    
-
-    useEffect(() => {
-        const getAnimeList = async () => {
-            try{
-                const data = await getDocs(animeListCollectionRef);
-                setAnimeList(data.docs.map((doc) => 
-                ({...doc.data(), id: doc.id})))
-            }catch(error){
-                console.log('error', error)
-            }
-
+    const animeListCollectionRef = collection(db, 'Anime_list');
+    
+    const getAnimeList = async () => {
+        try{
+            const data = await getDocs(animeListCollectionRef);
+            setAnimeList(data.docs.map((doc) => 
+            ({...doc.data(), id: doc.id})))
+        }catch(error){
+            console.log('error', error)
         }
-        getAnimeList();
-    }, [])
+    }
+    
     const deleteAnime = async(id) => {
         try{
-        const animeDoc = doc(db, "Anime_list", id)
-        await deleteDoc(animeDoc);
+            const animeDoc = doc(db, "Anime_list", id)
+            await deleteDoc(animeDoc);
+            console.log(id)
+            console.log('deleted!')
         }catch(error){
             console.log(error)
         }
+        getAnimeList();
     }
+
+    useEffect(() => {
+        getAnimeList();
+    }, [])
+    
+    console.log(animeList)
 
     return(
         <div className="container" style={{marginTop: '6rem'}}>
-            {animeList.map((anime) => {
+            <h1>Anime List</h1>
+            {animeList.length < 1 ? <div>No Anime In list</div> : animeList.map((anime) => {
                 if(auth.currentUser.uid === anime.author.id)
-                return <div className="card-container" key={anime.anime_id}>
+                return <div className="card-container" key={anime.id}>
                     <div className="deleteAnime">
                         
                     </div>
@@ -46,7 +53,7 @@ const List = () => {
                         anime.status === 'watching' ? 'lightblue' : 'white'
                     }}
                     >{anime.status}</p>
-                    <button className="deleteBtn" onClick={() => deleteAnime(anime.anime_id)}>&#128465;</button>
+                    <button className="deleteBtn" onClick={() => deleteAnime(anime.id)}>&#128465;</button>
                 </div>
             })}
         </div>

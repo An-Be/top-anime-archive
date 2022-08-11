@@ -23,7 +23,7 @@ const SeasonalAnime = () => {
 
     return(
         <>
-        <h1 style={{textAlign: 'center', marginTop:'6rem'}}>Summer 2022</h1>
+        <h1 style={{textAlign: 'center', marginTop:'6rem'}}>Current Seasons Anime</h1>
         <div className="container">
         {loading ? (
           <img
@@ -39,6 +39,8 @@ const SeasonalAnime = () => {
               <div key={anime.mal_id} className="card-container">
                 <img src={anime.images.jpg.image_url} alt={anime.title} />
                 <h1>{anime.title}</h1>
+                <p>airing from: {anime.aired.prop.from.month}/{anime.aired.prop.from.day}/{anime.aired.prop.from.year} </p>
+                <p>airing on: {anime.broadcast.day}</p>
               </div>
             );
           })
