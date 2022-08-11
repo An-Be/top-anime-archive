@@ -1,26 +1,38 @@
 import { useContext, useEffect } from "react";
-import { getData } from "../actions/Actions";
-import AddToList from "../components/AddToList";
 import ViewMoreInfo from "../components/ViewMoreInfo";
 import { DataContext } from "../context/DataContext";
+import { UserContext } from "../context/UserContext";
+import { getDocs, collection} from "firebase/firestore";
+import { db } from "../firebase.config";
+import { Link } from "react-router-dom";
 
-const AllManga = () => {
+const TopManga = () => {
   const { loading, error, mangaData, dispatch } = useContext(DataContext);
+  const { isAuth } = useContext(UserContext);
+
+  let trendingManga = []
+
+  const mangaCollectionRef = collection(db, 'Manga');    
 
   useEffect(() => {
-    dispatch({ type: "FETCHING" });
-    const fetchData = async () => {
-      try {
-        const allManga = await getData(`https://kitsu.io/api/edge/trending/manga`);
-        dispatch({ type: "FETCHED_MANGA", payload: allManga });
-      } catch (error) {
-        dispatch({ type: "FETCH_ERROR" });
-      }
-    };
-    fetchData();
-    console.log("i am used once");
-    console.log(mangaData);
-  }, [dispatch]);
+    dispatch({ type: 'FETCHING'});
+    const getAnime = async () => {
+      try{
+        const data = await getDocs(mangaCollectionRef);
+        data.docs.map((doc) => 
+        {
+          return trendingManga.push({...doc.data(), doc_id: doc.id})
+        })
+
+        console.log(trendingManga)
+        dispatch({ type: "FETCHED_MANGA", payload: trendingManga});
+    }catch(error){
+        console.log('error', error)
+    }
+    }
+    getAnime();
+  }, [dispatch])
+
 
   return (
     <div className="container">
@@ -36,10 +48,10 @@ const AllManga = () => {
         mangaData.map((manga) => {
           return (
             <div key={manga.id} className="card-container">
-              <img src={manga.attributes.posterImage.original} alt={manga.attributes.canonicalTitle} />
-              <h1>{manga.attributes.canonicalTitle}</h1>
-              <AddToList />
-              <ViewMoreInfo />
+              <img src={manga.posterImage.original} alt={manga.canonicalTitle} />
+              <h1>{manga.canonicalTitle}</h1>
+              {isAuth && <Link to='/add-to-list' state={{ id: manga.id}}>Add</Link> }
+              { isAuth && <ViewMoreInfo />}
             </div>
           );
         })
@@ -47,4 +59,4 @@ const AllManga = () => {
     </div>
   );
 };
-export default AllManga;
+export default TopManga;

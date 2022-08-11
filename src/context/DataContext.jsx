@@ -16,10 +16,10 @@ const DataProvider = ({ children }) => {
             animeRecData: [],
             mangaRecData: [],
             animeRevData: [],
-            mangaRevData: [],
             randomAnimeData: [],
             randomMangaData: [],
-            animeSeasonData: []
+            animeSeasonData: [],
+            oneAnimeData: []
         })
 
     return(

@@ -88,6 +88,10 @@ main{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
+.home-card-container:hover{
+  opacity: 50%;
+  cursor: pointer;
+}
 .home-card-container{
   display: flex;
   flex-direction: column;
@@ -95,6 +99,7 @@ main{
   height: 300px;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
 }
 .home-card-container img{
   border-radius: 1rem;
@@ -131,8 +136,12 @@ section{
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 1rem;
+  margin: 2rem;
 
+}
+.posterImage:hover{
+  opacity: 50%;
+  cursor: pointer;
 }
 .card-container h1{
   font-size: 1rem;
@@ -177,6 +186,14 @@ tr .title{
 tr .content{
   font-size: .8rem;
   font-style: italic;
+}
+.deleteBtn{
+  border: none;
+  background-color: transparent;
+}
+.animeStatus{
+  padding: .5rem;
+  border-radius: 1rem;
 }
 @media (max-width: 1050px) and (min-width: 768px) {
   .container{

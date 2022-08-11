@@ -2,8 +2,7 @@ import TopFiveAnime from "../components/TopFiveAnime";
 import TopFiveManga from "../components/TopFiveManga";
 import RndAnimeBtn from "../components/RndAnimeBtn";
 import RndMangaBtn from "../components/RndMangaBtn";
-import TwoAnimeRec from "../components/TwoAnimeRec";
-import TwoMangaRec from "../components/TwoMangaRec";
+import Reccomendation from "../components/Reccomendations";
 
 const Home = () => {
   return (
@@ -25,10 +24,7 @@ const Home = () => {
         <TopFiveManga />
       </section>
       <section className='animeSection'>
-        <TwoAnimeRec />
-      </section>
-      <section className='animeSection'>
-        <TwoMangaRec />
+        <Reccomendation />
       </section>
     </main>
   );

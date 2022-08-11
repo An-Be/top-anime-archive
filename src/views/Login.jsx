@@ -1,5 +1,5 @@
 import { auth, provider } from '../firebase.config';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithPopup, signInAnonymously } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
@@ -15,12 +15,19 @@ const Login = () => {
             //redirect to home page
             navigate('/');
             console.log('logging in')
-        });
+        }).catch((error) => {
+            console.log(error)
+        })
     };
 
     const anon = () => {
-        setIsAuth(true);
-        navigate('/');
+        signInAnonymously(auth).then(() => {
+            setIsAuth(true);
+            navigate('/');
+            console.log('signed in as anon')
+        }).catch((error) => {
+            console.log(error)
+        })
     }
     console.log('hello')
 

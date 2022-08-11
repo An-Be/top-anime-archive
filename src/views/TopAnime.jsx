@@ -1,25 +1,41 @@
 import { useContext, useEffect } from "react";
-import { getData } from "../actions/Actions";
-import AddToList from "../components/AddToList";
 import ViewMoreInfo from "../components/ViewMoreInfo";
 import { DataContext } from "../context/DataContext";
+import { UserContext } from "../context/UserContext";
+import { Link } from "react-router-dom";
+import { getDocs, collection} from "firebase/firestore";
+import { db } from "../firebase.config";
 
-const AllAnime = () => {
+const TopAnime = () => {
   const { loading, error, animeData, dispatch } = useContext(DataContext);
+  const { isAuth } = useContext(UserContext);
+  let trendingAnime = []
+
+  const animeCollectionRef = collection(db, 'Anime');    
 
   useEffect(() => {
-    dispatch({ type: "FETCHING" });
-    const fetchData = async () => {
-      try {
-        const allAnime = await getData(`https://kitsu.io/api/edge/trending/anime`);
-        dispatch({ type: "FETCHED_ANIME", payload: allAnime });
-      } catch (error) {
-        dispatch({ type: "FETCH_ERROR" });
-      }
-    };
-    fetchData();
-    console.log("i am used once");
-  }, []);
+    dispatch({ type: 'FETCHING'});
+    const getAnime = async () => {
+      try{
+        const data = await getDocs(animeCollectionRef);
+        data.docs.map((doc) => 
+        {
+
+          return trendingAnime.push({...doc.data(), doc_id: doc.id})
+        })
+
+        console.log(trendingAnime)
+        dispatch({ type: "FETCHED_ANIME", payload: trendingAnime});
+    }catch(error){
+        console.log('error', error)
+    }
+    }
+    getAnime();
+  }, [dispatch])
+
+
+
+
   return (
     <div className="container">
       {loading ? (
@@ -34,10 +50,12 @@ const AllAnime = () => {
         animeData.map((anime) => {
           return (
             <div key={anime.id} className="card-container">
-              <img src={anime.attributes.posterImage.original} alt={anime.attributes.canonicalTitle} />
-              <h1>{anime.attributes.canonicalTitle}</h1>
-              <AddToList />
-              <ViewMoreInfo />
+              <Link to='/anime' state = {{ id: anime.id }}>
+              <img className="posterImage" src={anime.posterImage.original} alt={anime.canonicalTitle} />
+              </Link>
+              <h1>{anime.canonicalTitle}</h1>
+              {isAuth && <Link to='/add-to-list' state={{ id: anime.id}}>Add</Link> }
+              { isAuth && <ViewMoreInfo />}
             </div>
           );
         })
@@ -45,4 +63,4 @@ const AllAnime = () => {
     </div>
   );
 };
-export default AllAnime;
+export default TopAnime;

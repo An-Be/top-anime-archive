@@ -1,5 +1,5 @@
 {
-  "name": "Top-Anime-archive",
+   "name": "Top-Anime-archive",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
     "firebase": "^9.9.1",
+    "firestore-export-import": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",

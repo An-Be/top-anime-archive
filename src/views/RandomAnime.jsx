@@ -17,9 +17,9 @@ const RandomAnime = () => {
               : !loading && error ?
                 <div>{error}</div>
             : <div key={randomAnimeData.id}>
-                <h1>{randomAnimeData.attributes.canonicalTitle}</h1>
-                <img src={randomAnimeData.attributes.posterImage.original} alt={randomAnimeData.attributes.canonicalTitle} />
-                <p>{randomAnimeData.attributes.synopsis}</p>
+                <h1>{randomAnimeData.canonicalTitle}</h1>
+                <img src={randomAnimeData.posterImage.original} alt={randomAnimeData.canonicalTitle} />
+                <p>{randomAnimeData.synopsis}</p>
             </div>
             }
         </div>

@@ -1,26 +1,35 @@
 import { DataContext } from "../context/DataContext";
 import { useContext, useEffect } from "react";
-import { getData } from "../actions/Actions";
+import { getDocs, doc, collection} from "firebase/firestore";
+import { db } from "../firebase.config";
 
-const TwoAnimeRec = () => {
+const Reccomendation = () => {
     const { loading, error, animeRecData, dispatch } = useContext(DataContext);
+
+    const recCollectionRef = collection(db, 'Reccomendation');    
+
+
+    let recs = [];
 
     useEffect(() => {
       dispatch({ type: "FETCHING" });
       const fetchData = async () => {
         try {
-          const animeRec = await getData(
-            `https://api.jikan.moe/v4/recommendations/anime`
-          );
-          dispatch({ type: "FETCHED_ANIME_REC", payload: animeRec });
+          const data = await getDocs(recCollectionRef);
+          data.docs.map((doc) => 
+          {
+            recs.push({...doc.data(), doc_id: doc.id})
+          })
+          console.log(recs)
+          dispatch({ type: "FETCHED_ANIME_REC", payload: recs });
         } catch (error) {
           dispatch({ type: "FETCH_ERROR" });
+          console.log(error)
         }
       };
       fetchData();
-      console.log(animeRecData)
-      console.log("i am used once");
     }, [dispatch]);
+
   
     return (
       <div className="rec-wrapper">
@@ -34,11 +43,12 @@ const TwoAnimeRec = () => {
         ) : !loading && error ? (
           <div>{error}</div>
         ) : (
-          animeRecData.slice(0,1).map((rec, index) => {
+          animeRecData.map((rec, index) => {
             return (
               <div key={index}>
               <div className="rec-container">
               <table>
+                <tbody>
                 <tr>
                   <th>If you Liked...</th>
                   <th>You might like...</th>
@@ -65,6 +75,7 @@ const TwoAnimeRec = () => {
                 <tr>
                 <td className="content">{rec.content}</td>
                 </tr>
+                </tbody>
               </table>   
               </div>
             </div>
@@ -74,4 +85,4 @@ const TwoAnimeRec = () => {
       </div>
     );
 }
-export default TwoAnimeRec;
+export default Reccomendation;

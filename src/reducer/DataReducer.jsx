@@ -1,6 +1,4 @@
 const DataReducer = (state, action) => {
-    console.log('pinned dispatched', action)
-    console.log('pinned state', state)
     switch(action.type){
         case 'FETCHING':
             return{
@@ -22,6 +20,14 @@ const DataReducer = (state, action) => {
                 ...state,
                 status: 'fetched', 
                 animeData: action.payload,
+                error: '', 
+                loading: false
+            }
+        case 'FETCHED_ONE_ANIME':
+            return{
+                ...state,
+                status: 'fetched', 
+                oneAnimeData: action.payload,
                 error: '', 
                 loading: false
             }
@@ -78,14 +84,6 @@ const DataReducer = (state, action) => {
                 ...state,
                 status: 'fetched', 
                 mangaRecData: action.payload,
-                error: '', 
-                loading: false
-            }
-        case 'FETCHED_MANGA_REV':
-            return{
-                ...state,
-                status: 'fetched', 
-                mangaRevData: action.payload,
                 error: '', 
                 loading: false
             }

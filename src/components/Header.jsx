@@ -35,7 +35,6 @@ const Header = () => {
                 <DropdownMenu >
                     <DropdownItem tag={Link} to='/top-anime'>Trending Anime</DropdownItem>
                     <DropdownItem tag={Link} to='/season-anime'>Seasonal Anime</DropdownItem>
-                    <DropdownItem tag={Link} to='/anime-reviews'>Reviews</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
             <Dropdown nav isOpen={mangaDropdownOpen} toggle={toggleManga}>
@@ -49,7 +48,7 @@ const Header = () => {
                 {isAuth && 
                     <>
                     <NavItem> 
-                    <NavLink style={{color: '#457b9d'}}>My List</NavLink> 
+                    <NavLink tag={Link} to='/list' style={{color: '#457b9d'}}>My List</NavLink> 
                     </NavItem>
                     <NavItem>
                     <NavLink style={{color: '#457b9d'}}>My Profile</NavLink>
