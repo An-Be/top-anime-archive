@@ -8,14 +8,11 @@ I am focusing on using react hooks like
 I am planning to make a scaled down version of My Anime List and using [Jikan API](https://jikan.moe/) and [Kitsu API](https://kitsu.docs.apiary.io/) to get all the data.
 
 ### Some of the components I plan on having
-- [x] Top 25 Anime
-- [x] Top 25 Manga
-- [x] Anime Reccomendations
-- [x] Manga Reccomendations
-- [x] Anime Reviews
-- [x] Home page with 5 Top anime, 5 Top Manga, 1 reccomondations for both anime and manga
+- [x] Trending Anime
+- [x] Trending Manga
+- [x] Home page with 5 trending anime, 5 trending Manga, 2 reccomendations
 - [x] Add login function with firebase
-- [ ] I would also like to incorporate functionality so a user can add or remove anime or manga on their own personal list.
+- [x] I would also like to incorporate functionality so a user can add or remove anime or manga on their own personal list.
 - If it is a manga a user can set it to
   - [ ] completed
   - [ ] reading
@@ -31,7 +28,6 @@ For styling I will be using a bit of reactstrap for the header/navbar and flexbo
 
 ### Long term goals
 - [ ] Fetching all information from API and using pagination/infinite scroll to show all information
-- [ ] Login/Sign up
 
 # Getting Started with Create React App
 
