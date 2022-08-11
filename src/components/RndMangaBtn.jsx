@@ -8,7 +8,6 @@ const RndMangaBtn = () => {
     const { dispatch } = useContext(DataContext)
     const rndNum = Math.floor(Math.random() * 10);
 
-
     let trendingManga = []
 
     const mangaCollectionRef = collection(db, 'Manga');    
@@ -23,8 +22,6 @@ const RndMangaBtn = () => {
             trendingManga.push({...doc.data(), doc_id: doc.id})
           })
           let rndManga = trendingManga[rndNum]
-
-          console.log(trendingManga)
           dispatch({ type: "FETCHED_RANDOM_MANGA", payload: rndManga});
       }catch(error){
           console.log('error', error)

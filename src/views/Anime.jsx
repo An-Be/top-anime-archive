@@ -24,11 +24,7 @@ const Anime = () => {
             }
         }
         fetchData();
-        console.log('I am used once')
     }, [dispatch, id])
-
-    console.log(id);
-    console.log('in anime component', oneAnimeData);
     
     return(
         <div>

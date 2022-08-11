@@ -15,7 +15,6 @@ const Login = () => {
             setUser();
             //redirect to home page
             navigate('/');
-            console.log('logging in')
         }).catch((error) => {
             console.log(error)
         })
@@ -26,12 +25,10 @@ const Login = () => {
             setIsAuth(true);
             setUser();
             navigate('/');
-            console.log('signed in as anon')
         }).catch((error) => {
             console.log(error)
         })
     }
-    console.log('hello')
 
     return(
         <div style={{marginTop: '10rem'}} className="login">

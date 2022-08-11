@@ -22,8 +22,6 @@ const RndAnimeBtn = () => {
             trendingAnime.push({...doc.data(), doc_id: doc.id})
           })
           let rndAnime = trendingAnime[rndNum]
-
-          console.log(trendingAnime)
           dispatch({ type: "FETCHED_RANDOM_ANIME", payload: rndAnime});
       }catch(error){
           console.log('error', error)

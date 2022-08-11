@@ -1,10 +1,8 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { auth } from "../firebase.config";
 const Profile = () => {
 
     const{displayName, email, photoURl } = useContext(UserContext);
-    console.log(displayName)
 
     return(
         <div className="profile" style={{marginTop: '7rem'}}>

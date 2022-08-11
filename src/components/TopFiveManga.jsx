@@ -19,7 +19,6 @@ const TopFiveManga = () => {
             trendingManga.push({...doc.data(), doc_id: doc.id})
           })
   
-          console.log(trendingManga)
           dispatch({ type: "FETCHED_MANGA", payload: trendingManga});
       }catch(error){
         dispatch({ type: "FETCH_ERROR" });

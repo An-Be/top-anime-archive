@@ -5,7 +5,6 @@ import { DataContext } from "../context/DataContext";
 const RandomAnime = () => {
 
     const { loading, randomAnimeData, error} = useContext(DataContext)
-    console.log(randomAnimeData)
 
     return(
         <div className='rnd-container' style={{marginTop: '6rem'}}>

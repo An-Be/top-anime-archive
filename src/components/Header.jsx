@@ -60,8 +60,6 @@ const Header = () => {
             :
             <Button onClick={signOutUser}>Sign out</Button>
             }
-            
-
         </Nav>
     );
 }

@@ -14,7 +14,7 @@ const AddToAnimeList = () => {
     const animeCollectionRef = collection(db, 'Anime');
 
     const navigate = useNavigate();
-    const {oneAnimeData, dispatch, loading, error } = useContext(DataContext);
+    const {oneAnimeData, dispatch} = useContext(DataContext);
     const location = useLocation();
     const { id } = location.state
     console.log(id);
@@ -26,7 +26,6 @@ const AddToAnimeList = () => {
             try{
                 const qry = query(animeCollectionRef, where('id', '==', id));
                 const data = await getDocs(qry);
-                console.log(data)
                 const anime = [];
                 data.docs.map((doc) => 
                 anime.push({...doc.data(), id: doc.id}))
@@ -41,10 +40,9 @@ const AddToAnimeList = () => {
 
     const handleChange = (event) => {
         event.preventDefault();
-        console.log('event', event.target.value)
         setStatus(event.target.value)
-        console.log(`${status} = ${event.target.value}`)
     }
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log('status', status)
@@ -55,10 +53,10 @@ const AddToAnimeList = () => {
             img: oneAnimeData[0].posterImage.original,
             status: status
         }
-        console.log(newAnime)
         await addAnimeToList();
         navigate('/list')
     }
+
     //function to add to db
     const addAnimeToList = async () => {
         await addDoc(animeListCollectionRef, {

@@ -8,7 +8,6 @@ const Reccomendation = () => {
 
     const recCollectionRef = collection(db, 'Reccomendation');    
 
-
     let recs = [];
 
     useEffect(() => {

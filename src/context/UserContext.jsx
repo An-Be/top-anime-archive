@@ -14,12 +14,10 @@ const UserProvider = ({ children }) => {
     const setUser = () => {
         user = auth.currentUser;
         if (user !== null) {
-        // The user object has basic properties such as display name, email, etc.
         setDisplayName(user.displayName);
         setEmail(user.email);
         setPhotoURl(user.photoURL);
 
-        //console.log(photoURl);
         }
     }
     const resetUser = () => {

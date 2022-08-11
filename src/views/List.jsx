@@ -40,7 +40,6 @@ console.log(displayName);
             dispatch({ type: 'FETCH_ERROR '})
             console.log('error', error)
         }
-        console.log(mangaList)
     }
 
     
@@ -60,8 +59,6 @@ console.log(displayName);
         try{
             const mangaDoc = doc(db, "Manga_list", id)
             await deleteDoc(mangaDoc);
-            console.log(id)
-            console.log('deleted!')
         }catch(error){
             console.log(error)
         }

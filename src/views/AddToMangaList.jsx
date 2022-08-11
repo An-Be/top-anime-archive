@@ -13,7 +13,7 @@ const AddToMangaList = () => {
     const mangaCollectionRef = collection(db, 'Manga');
 
     const navigate = useNavigate();
-    const {oneMangaData, dispatch, loading, error } = useContext(DataContext);
+    const {oneMangaData, dispatch} = useContext(DataContext);
     const location = useLocation();
     const { id } = location.state
     console.log(id);
@@ -25,7 +25,6 @@ const AddToMangaList = () => {
             try{
                 const qry = query(mangaCollectionRef, where('id', '==', id));
                 const data = await getDocs(qry);
-                console.log(data)
                 const manga = [];
                 data.docs.map((doc) => 
                 manga.push({...doc.data(), id: doc.id}))
@@ -40,9 +39,7 @@ const AddToMangaList = () => {
 
     const handleChange = (event) => {
         event.preventDefault();
-        console.log('event', event.target.value)
         setStatus(event.target.value)
-        console.log(`${status} = ${event.target.value}`)
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -54,7 +51,6 @@ const AddToMangaList = () => {
             img: oneMangaData[0].posterImage.original,
             status: status
         }
-        console.log(newManga)
         await addMangaToList();
         navigate('/list')
     }

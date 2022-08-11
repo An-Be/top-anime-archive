@@ -19,7 +19,6 @@ const SeasonalAnime = () => {
         fetchData();
     },[dispatch])
 
-    console.log(animeSeasonData);
 
     return(
         <div>

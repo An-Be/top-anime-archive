@@ -23,7 +23,6 @@ const TopAnime = () => {
           return trendingAnime.push({...doc.data(), doc_id: doc.id})
         })
 
-        console.log(trendingAnime)
         dispatch({ type: "FETCHED_ANIME", payload: trendingAnime});
     }catch(error){
         console.log('error', error)

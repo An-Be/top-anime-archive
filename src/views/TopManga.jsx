@@ -23,7 +23,6 @@ const TopManga = () => {
           return trendingManga.push({...doc.data(), doc_id: doc.id})
         })
 
-        console.log(trendingManga)
         dispatch({ type: "FETCHED_MANGA", payload: trendingManga});
     }catch(error){
         console.log('error', error)
