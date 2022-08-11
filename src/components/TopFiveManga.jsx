@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
-import { getDocs, doc, collection} from "firebase/firestore";
+import { getDocs, collection} from "firebase/firestore";
 import { db } from "../firebase.config";
 
 const TopFiveManga = () => {
@@ -9,6 +9,7 @@ const TopFiveManga = () => {
 
     let trendingManga = [];
 
+
     useEffect(() => {
       dispatch({ type: 'FETCHING'});
       const getAnime = async () => {
@@ -16,7 +17,7 @@ const TopFiveManga = () => {
           const data = await getDocs(mangaCollectionRef);
           data.docs.map((doc) => 
           {
-            trendingManga.push({...doc.data(), doc_id: doc.id})
+            return trendingManga.push({...doc.data(), doc_id: doc.id})
           })
   
           dispatch({ type: "FETCHED_MANGA", payload: trendingManga});

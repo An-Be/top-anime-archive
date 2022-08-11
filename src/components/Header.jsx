@@ -27,7 +27,7 @@ const Header = () => {
     return(
         <Nav style={{padding: '1rem', borderBottom: '1px solid grey'}}  className="nav">
             <NavItem>
-                <NavbarBrand className="navBrand" tag={Link} to='/'><img style={{width: '50px'}} src={require('../logo.png')} /></NavbarBrand>
+                <NavbarBrand className="navBrand" tag={Link} to='/'><img style={{width: '50px'}} src={require('../logo.png')} alt='logo' /></NavbarBrand>
             </NavItem>
             <Dropdown  nav isOpen={animeDropdownOpen} toggle={toggleAnime}>
                 <DropdownToggle style={{color: '#457b9d'}} nav caret>

@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
-import { getDocs, doc, collection} from "firebase/firestore";
+import { getDocs, collection} from "firebase/firestore";
 import { db } from "../firebase.config";
 
 const RndMangaBtn = () => {
     const { dispatch } = useContext(DataContext)
-    const rndNum = Math.floor(Math.random() * 10);
-
+    const rndNum = Math.floor(Math.random() * 10); 
+    const mangaCollectionRef = collection(db, 'Manga'); 
     let trendingManga = []
 
-    const mangaCollectionRef = collection(db, 'Manga');    
   
     useEffect(() => {
       dispatch({ type: 'FETCHING'});
@@ -19,7 +18,7 @@ const RndMangaBtn = () => {
           const data = await getDocs(mangaCollectionRef);
           data.docs.map((doc) => 
           {
-            trendingManga.push({...doc.data(), doc_id: doc.id})
+            return trendingManga.push({...doc.data(), doc_id: doc.id})
           })
           let rndManga = trendingManga[rndNum]
           dispatch({ type: "FETCHED_RANDOM_MANGA", payload: rndManga});

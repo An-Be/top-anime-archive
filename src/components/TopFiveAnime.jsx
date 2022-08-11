@@ -1,16 +1,13 @@
 import { useContext, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
-import { getData } from "../actions/Actions";
-import { Link } from "react-router-dom";
-import { getDocs, doc, collection} from "firebase/firestore";
+import { getDocs, collection} from "firebase/firestore";
 import { db } from "../firebase.config";
 
 const TopFiveAnime = () => {
     const { loading, error, animeData, dispatch} = useContext(DataContext);
-
+    const animeCollectionRef = collection(db, 'Manga'); 
     let trendingAnime = []
 
-    const animeCollectionRef = collection(db, 'Manga');    
   
     useEffect(() => {
       dispatch({ type: 'FETCHING'});
@@ -19,7 +16,7 @@ const TopFiveAnime = () => {
           const data = await getDocs(animeCollectionRef);
           data.docs.map((doc) => 
           {
-            trendingAnime.push({...doc.data(), doc_id: doc.id})
+            return trendingAnime.push({...doc.data(), doc_id: doc.id})
           })
   
           dispatch({ type: "FETCHED_MANGA", payload: trendingAnime});

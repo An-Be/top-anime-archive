@@ -82,7 +82,10 @@ main{
   margin: 1rem;
   color: white;
   text-align: center;
-
+}
+.randomManga:hover, .randomAnime:hover{
+  opacity: 90%;
+  color: white;
 }
 .addBtn{
   padding: 1rem 4rem;

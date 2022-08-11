@@ -1,6 +1,6 @@
 import { DataContext } from "../context/DataContext";
 import { useContext, useEffect } from "react";
-import { getDocs, doc, collection} from "firebase/firestore";
+import { getDocs, collection} from "firebase/firestore";
 import { db } from "../firebase.config";
 
 const Reccomendation = () => {
@@ -17,9 +17,8 @@ const Reccomendation = () => {
           const data = await getDocs(recCollectionRef);
           data.docs.map((doc) => 
           {
-            recs.push({...doc.data(), doc_id: doc.id})
+            return recs.push({...doc.data(), doc_id: doc.id})
           })
-          console.log(recs)
           dispatch({ type: "FETCHED_REC", payload: recs });
         } catch (error) {
           dispatch({ type: "FETCH_ERROR" });
@@ -27,6 +26,7 @@ const Reccomendation = () => {
         }
       };
       fetchData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
   

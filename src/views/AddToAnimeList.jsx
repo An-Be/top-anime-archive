@@ -42,7 +42,7 @@ const AddToAnimeList = () => {
         event.preventDefault();
         setStatus(event.target.value)
     }
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         console.log('status', status)

@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
-import { getDocs, doc, collection} from "firebase/firestore";
+import { getDocs, collection} from "firebase/firestore";
 import { db } from "../firebase.config";
 
 const RndAnimeBtn = () => {
     const { dispatch } = useContext(DataContext)
-    const rndNum = Math.floor(Math.random() * 10);
-
+    const rndNum = Math.floor(Math.random() * 10); 
+    const animeCollectionRef = collection(db, 'Anime');  
+ 
     let trendingAnime = []
-
-    const animeCollectionRef = collection(db, 'Anime');    
   
     useEffect(() => {
+      
       dispatch({ type: 'FETCHING'});
       const getAnime = async () => {
         try{
           const data = await getDocs(animeCollectionRef);
           data.docs.map((doc) => 
           {
-            trendingAnime.push({...doc.data(), doc_id: doc.id})
+            return trendingAnime.push({...doc.data(), doc_id: doc.id})
           })
           let rndAnime = trendingAnime[rndNum]
           dispatch({ type: "FETCHED_RANDOM_ANIME", payload: rndAnime});
