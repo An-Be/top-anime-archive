@@ -23,6 +23,22 @@ const DataReducer = (state, action) => {
                 error: '', 
                 loading: false
             }
+        case 'FETCHED_ANIME_LIST':
+            return{
+                ...state,
+                status: 'fetched', 
+                animeList: action.payload,
+                error: '', 
+                loading: false
+            }
+        case 'FETCHED_MANGA_LIST':
+            return{
+                ...state,
+                status: 'fetched', 
+                mangaList: action.payload,
+                error: '', 
+                loading: false
+            }
         case 'FETCHED_ONE_ANIME':
             return{
                 ...state,
@@ -31,22 +47,14 @@ const DataReducer = (state, action) => {
                 error: '', 
                 loading: false
             }
-        case 'FETCHED_ANIME_REC':
+        case 'FETCHED_REC':
             return{
                 ...state,
                 status: 'fetched', 
-                animeRecData: action.payload,
+                recData: action.payload,
                 error: '', 
                 loading: false
             }
-        case 'FETCHED_ANIME_REV':
-        return{
-            ...state,
-            status: 'fetched', 
-            animeRevData: action.payload,
-            error: '', 
-            loading: false
-        }
         case 'FETCHED_SEASON_ANIME':
             return{
                 ...state,
@@ -79,14 +87,6 @@ const DataReducer = (state, action) => {
             error: '', 
             loading: false
         }
-        case 'FETCHED_MANGA_REC':
-            return{
-                ...state,
-                status: 'fetched', 
-                mangaRecData: action.payload,
-                error: '', 
-                loading: false
-            }
         case 'FETCH_ERROR':
             return{
                 ...state,

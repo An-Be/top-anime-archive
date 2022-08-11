@@ -1,21 +1,27 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { getDocs, collection, doc, deleteDoc, query, where } from "firebase/firestore";
 import { auth, db } from "../firebase.config";
+import { DataContext } from "../context/DataContext";
 
 const List = () => {
-    const [ animeList, setAnimeList ] = useState([]);
     const animeListCollectionRef = collection(db, 'Anime_list');
-    
+    const { loading, error, animeList, dispatch } = useContext(DataContext);
+
     const getAnimeList = async () => {
+        dispatch({ type: 'FETCHING' })
         try{
             const qry = query(animeListCollectionRef, where('author.id', '==', auth.currentUser.uid))
             const data = await getDocs(qry);
-            setAnimeList(data.docs.map((doc) => 
-            ({...doc.data(), id: doc.id})))
+            const anime = []
+            data.docs.map((doc) => 
+            anime.push({...doc.data(), id: doc.id}))
+            dispatch({ type:'FETCHED_ANIME_LIST', payload: anime })
         }catch(error){
+            dispatch({ type: 'FETCH_ERROR '})
             console.log('error', error)
         }
     }
+
     
     const deleteAnime = async(id) => {
         try{
@@ -31,14 +37,22 @@ const List = () => {
 
     useEffect(() => {
         getAnimeList();
-    }, [])
+    }, [dispatch])
     
     console.log(animeList)
 
     return(
         <div className="container" style={{marginTop: '6rem'}}>
             <h1>Anime List</h1>
-            {animeList.length < 1 ? <div>No Anime In list</div> : animeList.map((anime) => {
+            {loading ? (
+        <img
+          className="loading"
+          src={require("../loading.webp")}
+          alt="loader"
+        />
+      ) : !loading && error ? (
+        <div>{error}</div>
+      ) : animeList.map((anime) => {
                 if(auth.currentUser.uid === anime.author.id)
                 return <div className="card-container" key={anime.id}>
                     <div className="deleteAnime">

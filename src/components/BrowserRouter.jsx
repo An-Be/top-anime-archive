@@ -7,7 +7,7 @@ import RandomManga from "../views/RandomManga";
 import SeasonalAnime from "../views/SeasonalAnime";
 import Login from "../views/Login";
 import List from "../views/List";
-import AddToList from "../views/AddToList";
+import AddToAnimeList from "../views/AddToAnimeList";
 import Anime from "../views/Anime";
 
 const BrowserRouter = () => {
@@ -21,7 +21,7 @@ const BrowserRouter = () => {
             <Route path='/season-anime' element={<SeasonalAnime />} />
             <Route path='/login' element={<Login />} />
             <Route path='/list' element={<List />} />
-            <Route path='/add-to-list' element={<AddToList />} />
+            <Route path='/add-to-list' element={<AddToAnimeList />} />
             <Route path='/anime' element={<Anime />} />
       </Routes>
     );

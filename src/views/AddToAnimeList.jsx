@@ -1,20 +1,20 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { getData } from "../actions/Actions";
 import { useEffect, useContext, useState } from "react";
 import { DataContext } from "../context/DataContext";
 import { auth, db } from '../firebase.config';
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 
 
-const AddToList = () => {
+const AddToAnimeList = () => {
     const [status, setStatus] = useState('')
     let newAnime = {}
 
     const animeListCollectionRef = collection(db, "Anime_list");
+    const animeCollectionRef = collection(db, 'Anime');
 
     const navigate = useNavigate();
-    const { error, loading, oneAnimeData, dispatch } = useContext(DataContext);
+    const {oneAnimeData, dispatch, loading, error } = useContext(DataContext);
     const location = useLocation();
     const { id } = location.state
     console.log(id);
@@ -24,7 +24,12 @@ const AddToList = () => {
         dispatch({ type:'FETCHING' })
         const fetchData = async () => {
             try{
-                const anime = await getData(`https://kitsu.io/api/edge/anime/${id}`)
+                const qry = query(animeCollectionRef, where('id', '==', id));
+                const data = await getDocs(qry);
+                console.log(data)
+                const anime = [];
+                data.docs.map((doc) => 
+                anime.push({...doc.data(), id: doc.id}))
                 dispatch({ type: 'FETCHED_ONE_ANIME', payload: anime});
             }catch(error){
                 dispatch({ type:'FETCH_ERROR' })
@@ -32,7 +37,7 @@ const AddToList = () => {
         }
         fetchData();
         console.log('I am used once')
-    }, [dispatch, id])
+    }, [dispatch])
 
     const handleChange = (event) => {
         event.preventDefault();
@@ -45,9 +50,9 @@ const AddToList = () => {
         console.log('status', status)
 
         newAnime = {
-            anime_id: oneAnimeData.id,
-            title: oneAnimeData.attributes.canonicalTitle,
-            img: oneAnimeData.attributes.posterImage.original,
+            anime_id: oneAnimeData[0].id,
+            title: oneAnimeData[0].canonicalTitle,
+            img: oneAnimeData[0].posterImage.original,
             status: status
         }
         console.log(newAnime)
@@ -63,23 +68,22 @@ const AddToList = () => {
                 id: auth.currentUser.uid
             }
         });
-        //navigate('/list');
     }
     return(
         <div style={{ marginTop: '6rem'}}>
-        {/* {loading ? 
+                    {loading ? (
             <img
             className="loading"
             src={require("../loading.webp")}
             alt="loader"
             />
-        : !loading && error ?
+                    ): !loading && error ?
             <div>{error}</div> :
-        <div key={oneAnimeData.id}>
-            <img src={oneAnimeData.attributes.posterImage.original} width='200px' alt={oneAnimeData.attributes.canonicalTitle}/>
-            <h1>{oneAnimeData.attributes.canonicalTitle}</h1>
+        <div key={oneAnimeData[0].id}>
+            <img src={oneAnimeData[0].posterImage.original} width='200px' alt={oneAnimeData[0].canonicalTitle}/>
+            <h1>{oneAnimeData[0].canonicalTitle}</h1>
         </div>
-        } */}
+        }
         <div>
             <form onSubmit={handleSubmit}>
             <label htmlFor="status">Choose a status:</label>
@@ -100,4 +104,4 @@ const AddToList = () => {
         </div>
     );
 }
-export default AddToList;
+export default AddToAnimeList;

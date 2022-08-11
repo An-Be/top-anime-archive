@@ -4,7 +4,7 @@ import { getDocs, doc, collection} from "firebase/firestore";
 import { db } from "../firebase.config";
 
 const Reccomendation = () => {
-    const { loading, error, animeRecData, dispatch } = useContext(DataContext);
+    const { loading, error, recData, dispatch } = useContext(DataContext);
 
     const recCollectionRef = collection(db, 'Reccomendation');    
 
@@ -21,7 +21,7 @@ const Reccomendation = () => {
             recs.push({...doc.data(), doc_id: doc.id})
           })
           console.log(recs)
-          dispatch({ type: "FETCHED_ANIME_REC", payload: recs });
+          dispatch({ type: "FETCHED_REC", payload: recs });
         } catch (error) {
           dispatch({ type: "FETCH_ERROR" });
           console.log(error)
@@ -43,7 +43,7 @@ const Reccomendation = () => {
         ) : !loading && error ? (
           <div>{error}</div>
         ) : (
-          animeRecData.map((rec, index) => {
+          recData.map((rec, index) => {
             return (
               <div key={index}>
               <div className="rec-container">
