@@ -9,6 +9,8 @@ import Login from "../views/Login";
 import List from "../views/List";
 import AddToAnimeList from "../views/AddToAnimeList";
 import Anime from "../views/Anime";
+import AddToMangaList from "../views/AddToMangaList";
+import Profile from "../views/Profile";
 
 const BrowserRouter = () => {
     return(
@@ -21,8 +23,10 @@ const BrowserRouter = () => {
             <Route path='/season-anime' element={<SeasonalAnime />} />
             <Route path='/login' element={<Login />} />
             <Route path='/list' element={<List />} />
-            <Route path='/add-to-list' element={<AddToAnimeList />} />
+            <Route path='/add-to-anime-list' element={<AddToAnimeList />} />
+            <Route path='/add-to-manga-list' element={<AddToMangaList />} />
             <Route path='/anime' element={<Anime />} />
+            <Route path='/profile' element={<Profile />} />
       </Routes>
     );
 }

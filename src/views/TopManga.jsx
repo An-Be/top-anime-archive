@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import ViewMoreInfo from "../components/ViewMoreInfo";
 import { DataContext } from "../context/DataContext";
 import { UserContext } from "../context/UserContext";
 import { getDocs, collection} from "firebase/firestore";
@@ -35,7 +34,7 @@ const TopManga = () => {
 
 
   return (
-    <div className="container">
+    <div style={{marginTop: '7rem'}} className="container">
       {loading ? (
         <img
           className="loading"
@@ -50,8 +49,7 @@ const TopManga = () => {
             <div key={manga.id} className="card-container">
               <img src={manga.posterImage.original} alt={manga.canonicalTitle} />
               <h1>{manga.canonicalTitle}</h1>
-              {isAuth && <Link to='/add-to-list' state={{ id: manga.id}}>Add</Link> }
-              { isAuth && <ViewMoreInfo />}
+              {isAuth && <Link className="addBtn" to='/add-to-manga-list' state={{ id: manga.id}}>Add</Link> }
             </div>
           );
         })

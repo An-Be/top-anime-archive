@@ -8,7 +8,7 @@ import { auth } from "../firebase.config";
 
 const Header = () => {
     const navigate = useNavigate();
-    const { isAuth, setIsAuth } = useContext(UserContext);
+    const { isAuth, setIsAuth, resetUser } = useContext(UserContext);
 
     const [animeDropdownOpen, setAnimeDropdownOpen]=useState(false);
     const [mangaDropdownOpen, setMangaDropdownOpen]=useState(false);
@@ -17,6 +17,7 @@ const Header = () => {
         signOut(auth).then(() => {
             localStorage.clear();
             setIsAuth(false);
+            resetUser();
             navigate("/login");
         })
     }
@@ -51,7 +52,7 @@ const Header = () => {
                     <NavLink tag={Link} to='/list' style={{color: '#457b9d'}}>My List</NavLink> 
                     </NavItem>
                     <NavItem>
-                    <NavLink style={{color: '#457b9d'}}>My Profile</NavLink>
+                    <NavLink tag={Link} to='/profile' style={{color: '#457b9d'}}>My Profile</NavLink>
                     </NavItem>
                     </>
                 }

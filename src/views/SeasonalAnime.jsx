@@ -22,8 +22,8 @@ const SeasonalAnime = () => {
     console.log(animeSeasonData);
 
     return(
-        <>
-        <h1 style={{textAlign: 'center', marginTop:'6rem'}}>Current Seasons Anime</h1>
+        <div>
+        <div><h1 style={{textAlign: 'center', marginTop:'6rem'}}>Current Seasons Anime</h1></div>
         <div className="container">
         {loading ? (
           <img
@@ -46,7 +46,7 @@ const SeasonalAnime = () => {
           })
         )}
       </div>
-      </>
+      </div>
     );
 }
 export default SeasonalAnime;

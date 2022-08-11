@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import ViewMoreInfo from "../components/ViewMoreInfo";
 import { DataContext } from "../context/DataContext";
 import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
@@ -37,7 +36,7 @@ const TopAnime = () => {
 
 
   return (
-    <div className="container">
+    <div style={{marginTop: '7rem'}} className="container">
       {loading ? (
         <img
           className="loading"
@@ -50,12 +49,9 @@ const TopAnime = () => {
         animeData.map((anime) => {
           return (
             <div key={anime.id} className="card-container">
-              <Link to='/anime' state = {{ id: anime.id }}>
               <img className="posterImage" src={anime.posterImage.original} alt={anime.canonicalTitle} />
-              </Link>
               <h1>{anime.canonicalTitle}</h1>
-              {isAuth && <Link to='/add-to-list' state={{ id: anime.id}}>Add</Link> }
-              { isAuth && <ViewMoreInfo />}
+              {isAuth && <Link className="addBtn" to='/add-to-anime-list' state={{ id: anime.id}}>Add</Link> }
             </div>
           );
         })

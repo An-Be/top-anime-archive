@@ -38,10 +38,8 @@ const TopFiveAnime = () => {
             : animeData.slice(0,5).map((anime) => {
                 return (
                 <div key={anime.id} className="home-card-container">
-                    <Link style={{ textDecoration: 'none'}} to='/anime' state={{ id: anime.id}}>
                       <img src={anime.posterImage.original} alt={anime.canonicalTitle} />
                       <h1 style={{color: 'black'}}>{anime.canonicalTitle}</h1>
-                    </Link>
                 </div>
             )})}
         </div>

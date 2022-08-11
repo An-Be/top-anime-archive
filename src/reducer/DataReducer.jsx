@@ -47,6 +47,14 @@ const DataReducer = (state, action) => {
                 error: '', 
                 loading: false
             }
+        case 'FETCHED_ONE_MANGA':
+            return{
+                ...state,
+                status: 'fetched', 
+                oneMangaData: action.payload,
+                error: '', 
+                loading: false
+            }
         case 'FETCHED_REC':
             return{
                 ...state,

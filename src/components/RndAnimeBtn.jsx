@@ -31,7 +31,6 @@ const RndAnimeBtn = () => {
       }
       getAnime();
     }, [dispatch])
-
     return(
         <Link style={{textDecoration: 'none'}} className="randomAnime" to='/random-anime'>Random Anime</Link>
     );

@@ -5,16 +5,15 @@ import { auth, db } from '../firebase.config';
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 
-
-const AddToAnimeList = () => {
+const AddToMangaList = () => {
     const [status, setStatus] = useState('')
-    let newAnime = {}
+    let newManga = {}
 
-    const animeListCollectionRef = collection(db, "Anime_list");
-    const animeCollectionRef = collection(db, 'Anime');
+    const mangaListCollectionRef = collection(db, "Manga_list");
+    const mangaCollectionRef = collection(db, 'Manga');
 
     const navigate = useNavigate();
-    const {oneAnimeData, dispatch, loading, error } = useContext(DataContext);
+    const {oneMangaData, dispatch, loading, error } = useContext(DataContext);
     const location = useLocation();
     const { id } = location.state
     console.log(id);
@@ -24,13 +23,13 @@ const AddToAnimeList = () => {
         dispatch({ type:'FETCHING' })
         const fetchData = async () => {
             try{
-                const qry = query(animeCollectionRef, where('id', '==', id));
+                const qry = query(mangaCollectionRef, where('id', '==', id));
                 const data = await getDocs(qry);
                 console.log(data)
-                const anime = [];
+                const manga = [];
                 data.docs.map((doc) => 
-                anime.push({...doc.data(), id: doc.id}))
-                dispatch({ type: 'FETCHED_ONE_ANIME', payload: anime});
+                manga.push({...doc.data(), id: doc.id}))
+                dispatch({ type: 'FETCHED_ONE_MANGA', payload: manga});
             }catch(error){
                 dispatch({ type:'FETCH_ERROR' })
             }
@@ -49,26 +48,27 @@ const AddToAnimeList = () => {
         event.preventDefault();
         console.log('status', status)
 
-        newAnime = {
-            anime_id: oneAnimeData[0].id,
-            title: oneAnimeData[0].canonicalTitle,
-            img: oneAnimeData[0].posterImage.original,
+        newManga = {
+            manga_id: oneMangaData[0].id,
+            title: oneMangaData[0].canonicalTitle,
+            img: oneMangaData[0].posterImage.original,
             status: status
         }
-        console.log(newAnime)
-        await addAnimeToList();
+        console.log(newManga)
+        await addMangaToList();
         navigate('/list')
     }
     //function to add to db
-    const addAnimeToList = async () => {
-        await addDoc(animeListCollectionRef, {
-            ...newAnime,
+    const addMangaToList = async () => {
+        await addDoc(mangaListCollectionRef, {
+            ...newManga,
             author: {
                 name: auth.currentUser.displayName,
                 id: auth.currentUser.uid
             }
         });
     }
+    console.log(oneMangaData[0].posterImage.original)
     return(
         <div style={{ marginTop: '6rem'}}>
         <div>
@@ -80,8 +80,8 @@ const AddToAnimeList = () => {
             onChange={handleChange}
             >
             <option disabled={true} value=''>Choose an option...</option>
-            <option value='watching'>Watching</option>
-            <option value='toWatch'>Will Watch</option>
+            <option value='reading'>Reading</option>
+            <option value='willRead'>Will Read</option>
             <option value='dropped'>Dropped</option>
             <option value='complete'>Completed</option>
             </select>
@@ -91,4 +91,4 @@ const AddToAnimeList = () => {
         </div>
     );
 }
-export default AddToAnimeList;
+export default AddToMangaList;

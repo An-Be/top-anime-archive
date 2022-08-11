@@ -71,6 +71,7 @@ main{
   border-style: none;
   margin: 1rem;
   color: white;
+  text-align: center;
 
 }
 .randomManga{
@@ -80,7 +81,21 @@ main{
   background-color: #457b9d;
   margin: 1rem;
   color: white;
+  text-align: center;
 
+}
+.addBtn{
+  padding: 1rem 4rem;
+  border-radius: 1rem;
+  border-style: none;
+  background-color: #457b9d;
+  margin: 1rem;
+  color: white;
+  text-decoration: none;
+}
+.addBtn:hover{
+  background-color: #294c61;
+  color: white;
 }
 .homeContainer{
   align-items: center;
@@ -88,10 +103,7 @@ main{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-.home-card-container:hover{
-  opacity: 50%;
-  cursor: pointer;
-}
+
 .home-card-container{
   display: flex;
   flex-direction: column;
@@ -131,21 +143,26 @@ section{
 }
 
 .card-container{
-  padding: 1rem;
+  /* padding: 1rem; */
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 2rem;
+  margin: 1rem;
+}
 
-}
-.posterImage:hover{
-  opacity: 50%;
-  cursor: pointer;
-}
 .card-container h1{
+  margin: 1rem;
   font-size: 1rem;
+  font-weight: 300;
   text-align: center;
+}
+.card-container p{
+  font-size: .9rem;
+  font-weight: 300;
+  text-align: center;
+  font-style: italic;
+  color: rgb(82, 81, 81);
 }
 .card-container img {
   border-radius: 1rem;
@@ -159,7 +176,7 @@ section{
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
   gap: 1rem;
-  margin-top: 7rem;
+  /* margin-top: 7rem; */
 }
 .h1Rec{
   font-size: 1rem;
@@ -174,6 +191,7 @@ section{
   display: flex;
   flex-direction: column;
 }
+
 td {
   width: 50%;
 }
@@ -191,9 +209,104 @@ tr .content{
   border: none;
   background-color: transparent;
 }
+.deleteBtn:hover{
+  opacity: 50%;
+}
 .animeStatus{
   padding: .5rem;
   border-radius: 1rem;
+}
+.rnd-container{
+  display: flex;
+  margin: 2rem;
+}
+.rnd-card-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 2rem;
+
+}
+.detailsWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem;
+}
+.rnd-card-container h1{
+  font-size: 2rem;
+  font-weight: 900;
+}
+.rnd-card-container img{
+  border-radius: 1rem;
+  width: 400px;
+  margin-bottom: 1rem;
+}
+.details{
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
+  text-align: center;
+}
+.synopsis{
+  font-style: italic;
+  text-align: center;
+}
+#rating{
+  background-color:#ef476f;
+}
+#ratingRank{
+  background-color: #ffd166;
+
+}
+#popRating{
+  background-color: #06d6a0;
+}
+#status{
+  background-color: #118ab2;
+
+}
+#episodes{
+  background-color: #073b4c;
+
+}
+.login{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.btnWrapper{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.login-btn{
+  background-color: #4285F4;
+  color: white;
+  font-weight: bold;
+  border-style: none;
+  margin: 1rem;
+  padding: 1rem;
+}
+.anon-btn{
+  background-color: #de5246;
+  color: white;
+  font-weight: bold;
+  border-style: none;
+  margin: 1rem;
+  padding: 1rem;
+
+}
+.login-btn:hover, .anon-btn:hover{
+  opacity: 50%;
+}
+.profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 @media (max-width: 1050px) and (min-width: 768px) {
   .container{
@@ -218,5 +331,12 @@ tr .content{
   }
   .homeContainer{
     grid-template-columns: 1fr;
+  }
+  table{
+  display: flex;
+  justify-content: center;
+  }
+  .intro h1{
+    margin-top: 2rem;
   }
 }
