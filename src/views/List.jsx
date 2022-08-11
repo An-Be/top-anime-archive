@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getDocs, collection, doc, deleteDoc } from "firebase/firestore";
+import { getDocs, collection, doc, deleteDoc, query, where } from "firebase/firestore";
 import { auth, db } from "../firebase.config";
 
 const List = () => {
@@ -8,7 +8,8 @@ const List = () => {
     
     const getAnimeList = async () => {
         try{
-            const data = await getDocs(animeListCollectionRef);
+            const qry = query(animeListCollectionRef, where('author.id', '==', auth.currentUser.uid))
+            const data = await getDocs(qry);
             setAnimeList(data.docs.map((doc) => 
             ({...doc.data(), id: doc.id})))
         }catch(error){
