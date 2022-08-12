@@ -64,10 +64,8 @@ const AddToMangaList = () => {
             }
         });
     }
-    console.log(oneMangaData[0].posterImage.original)
     return(
-        <div style={{ marginTop: '6rem'}}>
-        <div>
+        <div className='form-container' style={{ marginTop: '6rem'}}>
             <form onSubmit={handleSubmit}>
             <label htmlFor="status">Choose a status:</label>
 
@@ -83,7 +81,6 @@ const AddToMangaList = () => {
             </select>
             <button type='submit'>Add to List</button>
             </form>
-        </div>
         </div>
     );
 }

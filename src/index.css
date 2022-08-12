@@ -325,6 +325,33 @@ footer{
 footer a{
   margin: 1rem;
 }
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+form button{
+  background-color: #457b9d;
+  color: white;
+  font-weight: 300;
+  border-style: none;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+form button:hover{
+  opacity: 50%;
+}
+label{
+  font-weight: 900;
+  font-size: 2rem;
+}
 @media (max-width: 1050px) and (min-width: 768px) {
   .container{
     grid-template-columns: 1fr 1fr 1fr;

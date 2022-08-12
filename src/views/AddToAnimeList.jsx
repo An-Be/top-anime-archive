@@ -68,24 +68,22 @@ const AddToAnimeList = () => {
         });
     }
     return(
-        <div style={{ marginTop: '6rem'}}>
-        <div>
+        <div className="form-container" style={{ marginTop: '6rem'}}>
             <form onSubmit={handleSubmit}>
-            <label htmlFor="status">Choose a status:</label>
+                <label htmlFor="status">Choose a status:</label>
 
-            <select required name="status" id="status" 
-            value={status}
-            onChange={handleChange}
-            >
-            <option disabled={true} value=''>Choose an option...</option>
-            <option value='watching'>Watching</option>
-            <option value='toWatch'>Will Watch</option>
-            <option value='dropped'>Dropped</option>
-            <option value='complete'>Completed</option>
-            </select>
-            <button type='submit'>Add to List</button>
+                <select required name="status" id="status" 
+                value={status}
+                onChange={handleChange}
+                >
+                <option disabled={true} value=''>Choose an option...</option>
+                <option value='watching'>Watching</option>
+                <option value='toWatch'>Will Watch</option>
+                <option value='dropped'>Dropped</option>
+                <option value='complete'>Completed</option>
+                </select>
+                <button type='submit'>Add to List</button>
             </form>
-        </div>
         </div>
     );
 }
