@@ -255,6 +255,7 @@ tr .content{
 .synopsis{
   font-style: italic;
   text-align: center;
+  padding-bottom: 5rem;
 }
 #rating{
   background-color:#ef476f;
