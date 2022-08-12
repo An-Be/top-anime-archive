@@ -311,6 +311,20 @@ tr .content{
   align-items: center;
   flex-direction: column;
 }
+footer{
+  background-color: white;
+  border-Top: 1px solid #E7E7E7;
+  text-Align: center;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+}
+footer a{
+  margin: 1rem;
+}
 @media (max-width: 1050px) and (min-width: 768px) {
   .container{
     grid-template-columns: 1fr 1fr 1fr;

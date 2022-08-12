@@ -25,7 +25,7 @@ const Header = () => {
     const toggleAnime = () => setAnimeDropdownOpen(!animeDropdownOpen);
     const toggleManga = () => setMangaDropdownOpen(!mangaDropdownOpen)
     return(
-        <Nav style={{padding: '1rem', borderBottom: '1px solid grey'}}  className="nav">
+        <Nav style={{padding: '1rem', borderBottom: '1px solid #E7E7E7'}}  className="nav">
             <NavItem>
                 <NavbarBrand className="navBrand" tag={Link} to='/'><img style={{width: '50px'}} src={require('../logo.png')} alt='logo' /></NavbarBrand>
             </NavItem>
